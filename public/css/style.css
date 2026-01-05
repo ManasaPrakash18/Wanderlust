@@ -1,0 +1,163 @@
+*{
+  font-family: "Roboto Condensed", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+.content-wrapper{
+    flex: 1;
+    margin: 1rem;
+}
+
+
+.navbar{
+    height: 5rem;
+    background-color: rgb(250, 248, 241);
+}
+
+.navbar-nav{
+    display: flex;
+    align-self: center;
+    justify-self: center;
+}
+
+.fa-location-arrow{
+    color: #fe424d;
+    font-size: 2rem;
+}
+
+.nav-link{
+    color: #222222 !important;
+    position: relative;
+}
+
+
+.fa-brands{
+    color: navy;
+}
+.f-info-links{
+    display: flex;
+    justify-content: space-around;
+    width: 30vw;
+    justify-self: center;
+    flex-wrap: wrap;
+}
+.f-socials{
+    display: flex;
+    justify-content: space-around;
+    width: 20vw;
+    justify-self: center;
+}
+.f-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%; /* take full width */
+  box-sizing: border-box; /* include padding in width */
+}
+
+.fil,.list-link{
+    text-decoration: none ;
+    color: #222222;
+}
+
+.fil:hover{
+    color: navy;
+    text-decoration: underline;
+    
+}
+footer{
+    background-color: rgb(219, 218, 218);
+}
+
+
+
+.list-card{
+    border: none !important;
+    padding: 0;
+    position: relative;
+    margin: 1rem;
+    width: 20rem;
+}
+.card-img-top{
+    height: 18rem;
+    object-fit: cover;
+    width: 100%;
+    border-radius: 1rem;
+}
+.card-body{
+    padding: 0;
+}
+
+.card-title{
+    font-weight: bold;
+    text-decoration: none;
+    color: #222222;
+}
+
+.card-text{
+    font-weight: 400;
+}
+h2{
+
+    padding: 20px;
+    font-weight: bold;
+}
+
+
+.bnb-btn{
+    background-color: #fe424d !important;
+    border: none !important;
+    margin: 5px;
+}
+
+.dlt{
+    background-color: white!important;
+    border: 1px solid #fe424d !important;
+    color: #fe424d  !important;
+}
+
+.btns{
+    display: flex;
+    flex-direction: row;
+}
+
+.show-image {
+    height: 30vh ;
+    width: 3rem;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+
+.card-img-overlay{
+    opacity: 0;
+}
+
+.card-img-overlay:hover{
+    background-color: white;
+    border-radius: 1rem;
+    opacity: 0.2;
+    transition: opacity 0.3s ease;
+    height: 20rem;
+}
+
+.list-link{
+    text-decoration: none;
+    padding: 0;
+    margin: 1rem;
+    width: 20rem;
+}
+
+
+
+.show{
+    font-weight: 500;
+    margin-top: 1rem;
+    font-size: large;
+}
