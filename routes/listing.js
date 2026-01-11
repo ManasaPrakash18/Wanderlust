@@ -37,7 +37,7 @@ router.get('/:id', async(req, res) => {
     const {id}=req.params;
     const listing=await Listing.findById(id).populate('reviews');
     if(!listing){
-        req.flash("failure", "List item not found");
+        req.flash("error", "List item not found");
         res.redirect("/listings");
     }else{
         res.render("listings/show", {listing});
@@ -49,7 +49,7 @@ router.get('/:id/edit', async(req, res) => {
     const {id}=req.params;
     const listing=await Listing.findById(id);
     if(!listing){
-        req.flash("failure", "List item not found");
+        req.flash("error", "List item not found");
         res.redirect("/listings");
     }else{
         res.render("listings/edit", {listing});
