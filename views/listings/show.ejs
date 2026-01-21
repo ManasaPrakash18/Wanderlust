@@ -1,6 +1,8 @@
 <% layout("/layouts/boilerplate.ejs") %>
-
-<body>
+<script>
+    const mapToken = "<%=process.env.MAP_TOKEN %>";
+    let listing = <%- JSON.stringify(listing) %>; 
+</script>
     <div class="row">
 
         <div class="col-8 offset-2" >
@@ -9,7 +11,7 @@
             
             <div class="card list-card" style="width: 100%;">
 
-                <img src="<%= listing.image %>" class="card-img-top" alt="<%= listing.title %> image" >
+                <img src="<%= listing.image.url %>" class="card-img-top" alt="<%= listing.title %> image" >
                 <div class="card-body show">
                     <h4 class="fst-italic text-muted">Owned By : <%= listing.owner.username %></h4>
                     <p><%= listing.description %><br></p>
@@ -17,7 +19,7 @@
                     <p>Location : <%= listing.location %> <br></p>
                     <p>Country : <%= listing.country %> <br><br></p>
 
-                    <% if(user && user._id.equals(listing.owner._id)) { %>
+                    <% if(user && listing.owner.equals(user._id)) { %>
                     <div>
                         <a href="/listings/<%=listing._id%>/edit" class="btn bnb-btn btn-dark">Edit</a>
 
@@ -34,27 +36,43 @@
        <div class=" mb-5 mt-5">
         <h4>Leave a review</h4>
         <form action="/listings/<%= listing._id %>/reviews" method="post" novalidate class="needs_validation">
-            <div class="mb-3 mt-3">
-                <label for="rating" class="form-label">Rating</label>
-                <input type="range" name="review[rating]" id="rating" min="1" max="5" step="1" value="5" required class="form-range">
+            <div class="mb-3 mt-3 ">
+                <fieldset class="starability-growRotate">
+                    <legend>Rating:</legend>
+                    <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+                    <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                    <label for="first-rate1" title="Terrible">1 star</label>
+                    <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                    <label for="first-rate2" title="Not good">2 stars</label>
+                    <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                    <label for="first-rate3" title="Average">3 stars</label>
+                    <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                    <label for="first-rate4" title="Very good">4 stars</label>
+                    <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                    <label for="first-rate5" title="Amazing">5 stars</label>
+                </fieldset>
             </div>
             
             <div class="mb-3 mt-3">
-                <label for="comment" class="form-label">Comment</label>
+                <br>
+                <label for="comment" class="form-label"><legend>Comment:</legend></label>
                 <textarea type="text" name="review[comment]" id="comment" placeholder="Write your review here"  cols="80" rows="4" required class="form-control "></textarea>
             </div>
             <div class="invalid-feedback">Please add a valid review</div>
             <button class="btn btn-dark">Submit</button>
+            <br>
+            <hr>
         </form>
        </div>
          <% } %>
-       
 
+
+        <% if(listing.reviews.length>0) {%> 
         <div class="row mt-5 mb-5">
         <h4>Reviews</h4>
-        <% if(listing.reviews.length === 0){ %>
+        <!-- <% if(listing.reviews.length === 0){ %>
             <p class="text-center fst-italic">No reviews yet</p>
-        <% } %>
+        <% } %> -->
             <% for(let review of listing.reviews) { %> 
                 <div class="card col-5 m-2 p-2 ">
                     <div class="card-body">
@@ -69,13 +87,19 @@
                         <% } %>
                     </div>
                     <div class="card-text px-2">
-                        <%= review.comment %> <br>
-                        <%= review.rating %>/5 stars <br>
+                        <p class="starability-result card-text" data-rating="<%= review.rating %>">  <br></p>
+                        <p class="card-text"><%= review.comment %> <br></p>
                     </div>
                 </div>
                 </div>
             <% } %>
        </div>
+       <% } %>
+       </div>
+
+       <div class="col-8 offset-2">
+        <h3>Where you'll be</h3>
+       <div id="map" ></div>
        </div>
 
        
@@ -83,4 +107,4 @@
     </div>
 
 
-    
+<script src="/js/map.js"></script>

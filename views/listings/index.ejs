@@ -4,7 +4,7 @@
     <% allListings.forEach(listing => { %>
     <a href="/listings/<%=listing._id%>" class="list-link">
     <div class="card col list-card">
-      <img src="<%=listing.image%>" class="card-img-top" alt="list-image" style="height: 20rem;">
+      <img src="<%=listing.image.url%>" class="card-img-top" alt="list-image" style="height: 20rem;">
       <div class="card-img-overlay"></div>
       <div class="card-body">
         <h5 class="card-title"><%=listing.title%></h5>

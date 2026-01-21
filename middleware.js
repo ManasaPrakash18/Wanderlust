@@ -25,7 +25,7 @@ module.exports.saveRedirectUrl = (req, res, next)=>{
 module.exports.isOwner = async(req, res, next)=>{
     let {id}=req.params;
     let listing= await Listing.findById(id);
-    if(!listing.owner.equals(req.user)){
+    if(!listing.owner.equals(req.user._id)){
         req.flash("error","Access Denied !!!");
         return res.redirect(`/listings/${id}`);
     }

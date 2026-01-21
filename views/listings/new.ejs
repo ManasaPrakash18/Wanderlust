@@ -5,7 +5,7 @@
         <div class="col-8 offset-2">
     <h2>Create a New Listing</h2><br>
     
-    <form action="/listings" method="post" >
+    <form action="/listings" method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="title" class="form-label">Title</label><br>
             <input type="text" name="listing[title]" placeholder="Enter the Title" id="title" class="form-control" ><br>
@@ -15,8 +15,8 @@
             <textarea name="listing[description]" cols="80" rows="8" placeholder="Enter the Description" class="form-control" id="description"></textarea><br>
         </div>
         <div class="mb-3">
-            <label for="image" class="form-label">Image</label><br>
-            <input type="url" name="listing[image]" class="form-control" placeholder="Enter the image Link/URL" id="image" ><br>
+            <label for="image" class="form-label" >Upload Image</label><br>
+            <input type="file" name="listing[image]" class="form-control" placeholder="Enter the image Link/URL" id="image" ><br>
         </div>
 
         <div class="row">

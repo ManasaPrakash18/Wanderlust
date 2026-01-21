@@ -161,3 +161,57 @@ h2{
     margin-top: 1rem;
     font-size: large;
 }
+
+
+@media (max-width: 991px) {
+
+  /* Base collapsed state */
+  .navbar-collapse {
+    position: absolute;
+    top: 100%;
+    right: 1rem;
+    width: 260px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+
+    transform: translateX(110%);
+    transition: transform 0.3s ease-in-out;
+    height: auto;
+    z-index: 1050;
+  }
+
+  /* When menu is opened */
+  .navbar-collapse.show {
+    transform: translateX(0);
+  }
+
+  /* Nav items styling */
+  .navbar-nav {
+    width: 100%;
+  }
+
+  .navbar-nav .nav-link {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+  }
+
+  .navbar-nav .nav-link:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+  }
+
+  /* Separate auth links visually */
+  .navbar-nav + .navbar-nav {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+}
+
+
+/* map styling */
+#map { 
+    height: 400px;
+    width: auto;
+ }
