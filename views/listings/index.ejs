@@ -1,6 +1,26 @@
 <% layout("/layouts/boilerplate.ejs") %>
-<body>
+<link rel="stylesheet" href="/css/filter.css">
+
+<div id="filters">
+        <div id="filter-list">
+          <% for(let cat of categories){ %>
+            <a href="/listings?category=<%= cat.name %>">
+              <div class="filter <%= cat.name===filter? 'active' : '' %>">
+                <div class="icon"><i class="<%= cat.icon %>" style="color: black;"></i></div>
+                <p class="filter-name"><%= cat.name %></p>
+              </div>
+            </a>
+          <% } %>
+        </div>
+
+        <div class="filter clear-filter">
+          <a href="/listings">Clear Filter</a>
+        </div>
+
+      </div>
+
     <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-1" style="margin-left: 1.25rem;">
+      
     <% allListings.forEach(listing => { %>
     <a href="/listings/<%=listing._id%>" class="list-link">
     <div class="card col list-card">
@@ -15,7 +35,8 @@
   </a>
   <% }) %>
   </div>  
-</body>
+
+
 
 
 

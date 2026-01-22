@@ -2,7 +2,9 @@ const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
 const Review=require('./review');
 const User=require("./user");
-const { ref } = require('joi');
+const { ref, string } = require('joi');
+
+const CATEGORIES = require("../utils/categories");
 
 const ListingSchema=new Schema({
     title:{
@@ -37,6 +39,10 @@ const ListingSchema=new Schema({
       type: [Number],
       required: true
     }
+  },
+  category: {
+    type: [String],
+    enum: CATEGORIES
   }
 });
 

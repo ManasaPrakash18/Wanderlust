@@ -6,35 +6,58 @@
     <h2>Create a New Listing</h2><br>
     
     <form action="/listings" method="post" enctype="multipart/form-data">
+
+        <!-- title -->
         <div class="mb-3">
             <label for="title" class="form-label">Title</label><br>
             <input type="text" name="listing[title]" placeholder="Enter the Title" id="title" class="form-control" ><br>
         </div>
+
+        <!-- description -->
         <div class="mb-3">
             <label for="description" class="form-label">Description</label><br>
             <textarea name="listing[description]" cols="80" rows="8" placeholder="Enter the Description" class="form-control" id="description"></textarea><br>
         </div>
+
+        <!-- image -->
         <div class="mb-3">
             <label for="image" class="form-label" >Upload Image</label><br>
             <input type="file" name="listing[image]" class="form-control" placeholder="Enter the image Link/URL" id="image" ><br>
         </div>
 
         <div class="row">
+            <!-- price -->
             <div class="mb-3 col-md-4">
                 <label for="price" class="form-label">Price</label><br>
                 <input  name="listing[price]" placeholder="Enter the Price" class="form-control" id="price" ><br>
             </div>
+
+            <!-- country -->
             <div class="mb-3 col-md-8">
                 <label for="country" class="form-label">Country</label><br>
                 <input type="text" name="listing[country]" class="form-control" placeholder="Enter the Country" id="country" autocomplete="country" ><br>
             </div>
-
         </div>
         
+        <!-- location -->
         <div class="mb-3">
             <label for="location" class="form-label">Location</label><br>
             <input type="text" name="listing[location]" class="form-control" placeholder="Enter the location" id="location" ><br>
         </div>
+
+        <!-- category -->
+        <div class="mb-3">
+            <label class="form-label">Categories</label><br>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr);">
+                <% for(let cat of CATEGORIES){ %>
+                <div class="form-check form-check-inline " >
+                    <input type="checkbox" name="listing[category]" id="<%=cat%>" value="<%= cat %>">
+                    <label for="<%= cat %>"><%= cat %></label>
+                </div>
+                <% } %>
+            </div>
+        </div>
+
         
         <button type="submit" class="btn btn-dark bnb-btn">Create Listing</button>
     </form>

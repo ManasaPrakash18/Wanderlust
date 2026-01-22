@@ -4,10 +4,19 @@ const mapToken = process.env.MAP_TOKEN;
 
 const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
+const CATEGORIES= require("../utils/categories");
+const categories=require("../utils/filters");
+
+
 // index route
 module.exports.index = async(req, res) => {
+  const filter=req.query.category;
+  if(filter){
+    const allListings = await Listing.find({category :filter});
+    return res.render("listings/index", {allListings,filter,categories});
+  }
     const allListings= await Listing.find({});
-    res.render("listings/index", {allListings});
+    res.render("listings/index", {allListings,filter,categories});
 };
 
 
@@ -44,7 +53,7 @@ module.exports.editListing = async (req, res) => {
     );
   }
 
-  res.render("listings/edit", { listing, originalImageUrl });
+  res.render("listings/edit", { listing, originalImageUrl, CATEGORIES });
 };
 
 
@@ -72,7 +81,15 @@ module.exports.createListing = async(req, res)=>{
     .send()
     let url=req.file.secure_url;
     let filename=req.file.public_id;    
-    const newListing = new Listing(req.body.listing);
+    const listing = req.body.listing;
+    let { category } = listing;
+    if (!category) {
+      listing.category = [];
+    } else if (!Array.isArray(category)) {
+      listing.category = [category];
+    }
+
+    const newListing = new Listing(listing);
     newListing.geometry= response.body.features[0].geometry;
     newListing.owner=req.user._id;
     newListing.image = {url , filename};
@@ -96,5 +113,5 @@ module.exports.deleteListing = async(req,res)=>{
 // render form for new listing
 module.exports.newListingForm = (req, res) => {
     // console.log(req.user);
-    res.render("listings/new");
+    res.render("listings/new", {CATEGORIES} );
 };
