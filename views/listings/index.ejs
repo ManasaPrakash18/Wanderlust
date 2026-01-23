@@ -1,7 +1,12 @@
 <% layout("/layouts/boilerplate.ejs") %>
 <link rel="stylesheet" href="/css/filter.css">
 
-<div id="filters">
+<div id="filters" style="display: flex;">
+        <div class="filter-ops btn-outline-dark desktop-only" id="clear-filter">
+          <a href="/listings">Clear Filter</a>
+        </div>
+
+
         <div id="filter-list">
           <% for(let cat of categories){ %>
             <a href="/listings?category=<%= cat.name %>">
@@ -13,14 +18,49 @@
           <% } %>
         </div>
 
-        <div class="filter clear-filter">
-          <a href="/listings">Clear Filter</a>
+        
+
+        <div class="tax-toggle filter-ops desktop-only">
+          <span class="tax-label">Display total before taxes</span>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="checkNativeSwitch">
+          </div>
         </div>
 
-      </div>
+         
+</div>
+
+          <button
+            class="navbar-toggler mobile-only"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mobileFilters"
+            aria-expanded="false"
+            aria-label="Toggle filters"
+          >
+            <i class="fa-solid fa-sliders"></i>
+          </button>
+            <!-- Mobile Collapsed Filters -->
+            <div class="collapse mobile-filters-panel" id="mobileFilters">
+              <div class="p-3 border-top">
+                <button class="btn btn-outline-dark w-100 mb-3">
+                  Clear Filter
+                </button>
+
+                <div class="d-flex justify-content-between align-items-center">
+                  <span>Display total before taxes</span>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="checkNativeSwitch">
+                  </div>
+                </div>
+              </div>
+            </div>
 
     <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-1" style="margin-left: 1.25rem;">
       
+    <% if(allListings.length == 0) {%>
+      <em style="font-size: large;">No Results Found !</em>
+    <% } %>  
     <% allListings.forEach(listing => { %>
     <a href="/listings/<%=listing._id%>" class="list-link">
     <div class="card col list-card">
@@ -28,7 +68,7 @@
       <div class="card-img-overlay"></div>
       <div class="card-body">
         <h5 class="card-title"><%=listing.title%></h5>
-        <p class="card-text">&#8377; <%=listing.price.toLocaleString("en-IN")%>/night</p>
+        <p class="card-text">&#8377; <%=listing.price.toLocaleString("en-IN")%>/night <br> <em class="tax-info">+ 18% GST </em></p>
         <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
     </div>
   </div>
@@ -42,3 +82,12 @@
 
 
   
+<script>
+  const displayTax = document.getElementById("checkNativeSwitch");
+  displayTax.addEventListener('click',event =>{ 
+    let taxInfo = document.getElementsByClassName("tax-info");
+    for( let info of taxInfo){
+      info.style.display =  info.style.display === "inline" ? "none" : "inline" ;
+    }
+  });
+</script>

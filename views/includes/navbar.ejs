@@ -13,6 +13,16 @@
       <a class="nav-link" href="/listings">Explore</a>
     </div>
 
+    <!-- search buttons -->
+    <div class="btn-group">
+      <button type="button" class="btn">Anywhere</button>
+      <button type="button" class="btn">Any Week</button>
+      <form class="d-flex flex-justify-content-between" action=`/listings/index?search=${dest}`>
+        <input type="text" class="btn" placeholder="Search Destinations" style="border-right: none;" name="search">
+        <button style="width: 40px; height: 40px; border-radius: 50%; background-color: #fe424d; border: none;" id="search" ><i class="fa-solid fa-magnifying-glass" style="color: #fafafa; "></i></button>
+      </form>
+    </div>
+
     <!-- Right links -->
     <div class="navbar-nav">
       <a class="nav-link" href="/listings/new">Airbnb Your Home</a>

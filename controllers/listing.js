@@ -11,12 +11,21 @@ const categories=require("../utils/filters");
 // index route
 module.exports.index = async(req, res) => {
   const filter=req.query.category;
+  const dest=req.query.search;
+  let q={};
+
   if(filter){
-    const allListings = await Listing.find({category :filter});
-    return res.render("listings/index", {allListings,filter,categories});
+    q.category = filter;
   }
-    const allListings= await Listing.find({});
-    res.render("listings/index", {allListings,filter,categories});
+  if(dest){
+     q.$or = [
+      { location: { $regex: dest, $options: "i" } },
+      { country: { $regex: dest, $options: "i" } },
+      { title: { $regex: dest, $options: "i" } }
+    ];
+  }
+    const allListings= await Listing.find(q);
+    res.render("listings/index", {allListings,filter,categories,dest});
 };
 
 

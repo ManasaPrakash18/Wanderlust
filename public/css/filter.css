@@ -1,68 +1,87 @@
-#filters{
-    display: flex;
-    flex-wrap: wrap;
-    margin: 1rem 3.5rem 1rem;
-    background-color: antiquewhite;  
-    border-radius: 50px;
-    padding: 0rem 0.5rem 0rem;
-    justify-content: space-between;
-  }
+/* ===== FILTER BAR WRAPPER ===== */
+#filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
 
-  #filter-list{
-    display: flex;
-    justify-content: space-around;
+  margin: 1rem 3.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
 
-  }
-  .filter{
-    text-align: center;
-    margin: 1rem;
-    text-justify: auto;
-    opacity: 0.7;
-    padding: 2px;
-    position: relative;
-    color: black;
-  }
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
 
-  .filter:hover{
-    opacity: 1;
-    cursor: pointer;
-  }
+  border: 1px solid rgba(255, 255, 255, 0.35);
 
-  .filter:hover::after {
-  transform: scaleX(1);
+  box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
 }
 
-  .filter-name{
-    margin: 0;
-    font-size: 0.8rem;
-  }
+/* ===== FILTER LIST ===== */
+#filter-list {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 1.2rem;
+  align-items: center;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
 
-  #filters a{
-    text-decoration: none;
-    color: black;
-  }
-
-  .active{
-    color: black;
-    opacity: 1;
-    /* border-bottom: 2px solid gray; */
-  }
-
-.clear-filter{
+/* ===== FILTER LINK ===== */
+#filters a {
+  text-decoration: none;
   color: black;
-  background-color: transparent;
-  border: 2px solid black;
-  border-radius: 25px;
-  padding: 7.5px;
-  align-content: center;
-  font-weight: bold;
 }
 
+/* ===== FILTER ITEM ===== */
+.filter {
+  position: relative;              /* REQUIRED for ::after */
+  display: inline-flex;             /* REQUIRED for width */
+  flex-direction: column;
+  align-items: center;
+
+  padding: 0.4rem 0.6rem;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+/* ===== ICON ===== */
+.filter i {
+  font-size: 1.2rem;
+  color: black;                     /* FORCE override FA */
+  transition: color 0.3s ease;
+}
+
+/* ===== TEXT ===== */
+.filter-name {
+  margin: 0.2rem 0 0;
+  font-size: 0.8rem;
+}
+
+/* ===== HOVER ===== */
+.filter:hover {
+  opacity: 1;
+}
+
+.filter:hover i {
+  color: black;
+}
+
+/* ===== ACTIVE STATE ===== */
+.filter.active {
+  opacity: 1;
+  font-weight: 600;
+}
+
+/* ===== UNDERLINE ANIMATION ===== */
 .filter::after {
   content: "";
   position: absolute;
+  bottom: -6px;
   left: 0;
-  bottom: -6px;          /* space below text/icon */
+
   width: 100%;
   height: 2px;
   background-color: black;
@@ -76,5 +95,80 @@
   transform: scaleX(1);
 }
 
+/* ===== OPTIONAL: underline on hover too ===== */
+.filter:hover::after {
+  transform: scaleX(1);
+}
+
+/* ===== CLEAR FILTER BUTTON ===== */
+.filter-ops {
+  padding: 6px 14px;
+  border: 0.5px solid black;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+}
+
+#clear-filter:hover{box-shadow: 5px 5px 10px rgba(0,0,0,0.1);}
+
+.filter-ops a {
+  text-decoration: none;
+  color: black;
+}
+
+.form-check{
+  margin-left: 10px;
+}
+
+.form-check-input{
+  height: 20px;
+  cursor: pointer;
+}
+
+.tax-toggle{
+  align-content: center;
+}
 
 
+
+
+
+
+/* Mobile vs Desktop */
+.desktop-only {
+  display: flex;
+}
+
+.mobile-only {
+  display: none;
+}
+
+@media (min-width:768px) {
+  .mobile-filters-panel{
+    display: none;
+  }
+  
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only {
+    display: inline-flex;
+  }
+
+}
+
+.mobile-filters-panel {
+  background: #fff;
+  border-radius: 16px;
+  margin: 0.75rem 1rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.tax-info{
+  display: none;
+}
