@@ -7,7 +7,6 @@ A lightweight listings & reviews web app for travelers — discover places, read
 [![Languages](https://img.shields.io/badge/JavaScript%20%7C%20CSS%20%7C%20EJS-lightgrey)](https://github.com/ManasaPrakash18/Wanderlust)
 [![Made with Node.js](https://img.shields.io/badge/Node.js-%EF%B8%8F-brightgreen)](https://nodejs.org/)
 
-Live demo: https://wanderlust-k4ax.onrender.com
 
 ---
 
@@ -37,12 +36,6 @@ Language composition (repo analysis)
 - JavaScript: 36.4%
 - CSS: 33.1%
 - EJS: 30.5%
-
-Screenshots
-- Add images to ./screenshots:
-  - ./screenshots/home.png
-  - ./screenshots/listing.png
-  - ./screenshots/new-listing.png
 
 Table of contents
 - [Getting started](#getting-started)
@@ -88,7 +81,7 @@ npm run dev
 # Production
 npm start
 ```
-Visit http://localhost:3000
+Visit https://wanderlust-k4ax.onrender.com
 
 Run scripts (recommended additions to package.json)
 ```json
@@ -107,7 +100,6 @@ Project structure (high level)
 - views/ — EJS templates & partials
 - public/ — static assets (css, js, images)
 - utils/ — helpers (wrapAsync, ExpressError)
-- screenshots/ — optional demo images
 
 Development notes
 - Centralized error handling: utils/ExpressError.js
